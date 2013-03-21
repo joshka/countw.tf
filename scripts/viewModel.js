@@ -1,4 +1,4 @@
-define(['knockout'] function(ko) {
+define(['knockout'], function(ko) {
 	var ViewModel = function(model) {
 		console.log(model);
 	}
