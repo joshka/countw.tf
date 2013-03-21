@@ -1,10 +1,12 @@
 {
   "name": "countw.tf",
-  "version": "0.0.0",
-  "main": "main.js",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "components"
-  ]
+  "version": "0.0.1",
+  "dependencies": {
+  	"knockout": "latest",
+	"requirejs": "latest",
+	"requirejs-text": "latest"
+  },
+  "install": {
+  	"path": "scripts/vendor"
+  }
 }
