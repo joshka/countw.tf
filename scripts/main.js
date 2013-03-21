@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    'knockout': '../components/knockout/knockout',
+    'knockout': '../components/knockout/build/output/knockout',
   }
 });
 
