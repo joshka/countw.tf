@@ -6,6 +6,14 @@ var app = require('express')()
 
 var server = http.createServer(app).listen(process.env.PORT || 8080)
 
+app.any('/*', function(req, res, next){
+  if (req.headers.host.match(/^www/)) {
+    res.redirect('http://' + req.headers.host.replace(/^www\./, '') + req.url);
+  } else {
+    next();     
+  }
+});
+
 app.use(function(req, res) {
   function error(err) {
     res.statusCode = err.status || 500;
