@@ -17,7 +17,7 @@ app.use(function(req, res) {
     res.end('Redirecting to ' + req.url + '/');
   }
   send(req, url.parse(req.url).pathname)
-    .root(__dirname))
+    .root(path.join(__dirname, ''))
     .on('error', error)
     .on('directory', redirect)
     .pipe(res);
