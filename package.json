@@ -1,0 +1,15 @@
+{
+  "name": "count-wtf",
+  "version": "0.0.1",
+  "dependencies": {
+    "send": "~0.1.0",
+    "express": "3.1.0",
+    "datejs": "0.0.2",
+    "knockout-client": "2.2.1",
+    "knockout-mapping": "2.3.2"
+  },
+  "engines": {
+    "node": "0.10.0",
+    "npm": "1.2.14"
+  }
+}
