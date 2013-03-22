@@ -1,6 +1,5 @@
-var ko = require('knockout'),
+var ko = require('knockout-client'),
 	vm = require('./viewModel');
 
-//var wtfs = ko.utils.parseJson(localStorage.getItem('countw.tf-wtfs'));
-
+vm.wtf();
 ko.applyBindings(vm);

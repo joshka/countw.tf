@@ -6,12 +6,19 @@
     <title>countw.tf</title>
     <meta name="description" content="Count the WTFs">
     <meta name="viewport" content="width=device-width">
+    <style type="text/css">
+    .wtfCount {
+      color: red;
+    }
+    </style>
   </head>
 
   <body>
     <form>
       <input type="button" value="WTF" data-bind="click: wtf">
-      <input type="text" data-bind="value: wtfCount()">
+      <input type="button" value="Reset" data-bind="click: reset">
+      <p class='wtfCount'><span data-bind="text: wtfCount"></span> WTFs so far.</p>
+      <p class='wtfDate'>Last WTF: <span data-bind="text: lastWtf"></span></p>
     </form>
      <script src="scripts/app-built.js"></script>
   </body>
