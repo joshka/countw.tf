@@ -7,18 +7,22 @@
     <meta name="description" content="Count the WTFs">
     <meta name="viewport" content="width=device-width">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <style type="text/css">
       body {
         font-family: 'Open Sans', sans-serif;
         text-align: center;
       }
       .wtf-count {
-        color: red;
-        font-size: larger;
+        margin-top: 2em;
+      }
+      .wtf-count span {
+        color:red;
+        font-size: large;
       }
       .wtf-date {
-        font-size: larger;
+        margin-top: 4em;
+        color: #ccc;
       }
       .wtf-button {
         -moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
@@ -34,13 +38,12 @@
         border:2px solid #d83526;
         display:inline-block;
         color:#ffffff;
-        font-family:arial;
-        font-size:22px;
-        font-weight:bold;
+        font-family:Oswald;
+        font-size:36px;
+        font-weight:normal;
         padding:16px 17px;
         text-decoration:none;
         text-shadow:1px 1px 0px #b23e35;
-        letter-spacing: 0.1em;
       }
       .wtf-button:hover {
         background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
@@ -54,9 +57,15 @@
       }
       .reset {
         font-size: 50%;
+        color: #ccc;
       }
       form {
         margin-top: 5em;
+      }
+      footer, footer a {
+        color: #ccc;
+        margin-top: 20em;
+        font-size: small;
       }
     </style>
 
@@ -64,11 +73,14 @@
 
   <body>
     <form>
-      <a href="#" class="wtf-button" data-bind="click: wtf">WTF!</a>
-      <p>You have <span class="wtf-count" data-bind="text: wtfCount"></span> WTFs so far.</p>
-      <p>Last WTF: <span class="wtf-date" data-bind="text: lastWtf"></span></p>
+      <a href="#" class="wtf-button" data-bind="click: wtf">WTF</a>
+      <p class="wtf-count">You have
+        <span data-bind="text: wtfCount"></span> WTFs so far.
+      </p>
+      <p class="wtf-date">Last WTF: <span data-bind="text: lastWtf"></span></p>
       <a href="#" class="reset" data-bind="click: reset">Reset</a>
     </form>
+    <footer>A toy app by <a href="http://joshka.net">Joshua McKinney</a></footer>
     <script src="scripts/app-built.js"></script>
   </body>
 </html>
