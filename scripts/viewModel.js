@@ -12,7 +12,7 @@ function ViewModel(wtfs) {
 		var c = this.wtfCount();
 		if (!c)
 			return "never";
-		return new Date().toString('yyyy-MM-dd HH:mm:ss');
+		return new Date().toString('F');
 	}, this);
 }
 
