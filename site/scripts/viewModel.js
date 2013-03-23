@@ -17,7 +17,7 @@ function ViewModel(wtfs, lastWtf) {
 
 ViewModel.prototype.wtf = function() {
 	this.wtfCount(this.wtfCount() + 1);
-	this.lastWtf(new Date().toString('F'));
+	this.lastWtf(new Date().toString('ddd, MMM dd, yyyy h:mm:ss tt'));
 }
 
 ViewModel.prototype.reset = function() {
