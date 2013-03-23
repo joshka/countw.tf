@@ -56,7 +56,6 @@
         top:1px;
       }
       .reset {
-        font-size: 50%;
         color: #ccc;
       }
       form {
@@ -74,11 +73,10 @@
   <body>
     <form>
       <a href="#" class="wtf-button" data-bind="click: wtf">WTF</a>
-      <p class="wtf-count">You have
-        <span data-bind="text: wtfCount"></span> WTFs since you last reset.
+      <p class="wtf-count">Counted
+        <span data-bind="text: wtfCount"></span> WTFs since last <a href="#" class="reset" data-bind="click: reset">Reset</a>.
       </p>
       <p class="wtf-date">Last WTF: <span data-bind="text: lastWtf"></span></p>
-      <a href="#" class="reset" data-bind="click: reset">Reset</a>
     </form>
     <footer>A toy app by <a href="http://joshka.net">Joshua McKinney</a></footer>
     <script src="scripts/app-built.js"></script>
