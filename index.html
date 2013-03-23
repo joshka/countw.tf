@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>countw.tf</title>
-    <meta name="description" content="Count the WTFs">
+    <meta name="description" content="Count all the WTFs. For when just knowing it's fucked is not enough.">
     <meta name="viewport" content="width=device-width">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
@@ -67,14 +67,12 @@
         font-size: small;
       }
     </style>
-
   </head>
-
   <body>
     <form>
       <a href="#" class="wtf-button" data-bind="click: wtf">WTF</a>
       <p class="wtf-count">Counted
-        <span data-bind="text: wtfCount"></span> WTFs since last <a href="#" class="reset" data-bind="click: reset">Reset</a>.
+        <span data-bind="text: wtfCount()"></span> WTFs since last <a href="#" class="reset" data-bind="click: reset">Reset</a>.
       </p>
       <p class="wtf-date">Last WTF: <span data-bind="text: lastWtf"></span></p>
     </form>
