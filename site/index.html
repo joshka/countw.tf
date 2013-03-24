@@ -14,15 +14,36 @@
   <body>
     <form>
       <a href="#" class="wtf-button" data-bind="click: wtf">WTF</a>
-      <p class="wtf-count">Counted
-        <span data-bind="text: wtfCount()"></span> WTFs since last <a href="#" class="reset" data-bind="click: reset">Reset</a>.
+      <p class="wtf-count">
+        Counted <span data-bind="text: wtfCount()"></span> WTFs since last
+        <a href="#" class="reset" data-bind="click: reset">Reset</a>.
       </p>
-      <p class="wtf-date">Last WTF: <span data-bind="text: lastWtfText()"></span></p>
+      <p class="wtf-date">
+        Last WTF: <span data-bind="text: lastWtfText()"></span>
+      </p>
     </form>
     <footer>
       A toy app <a href="https://github.com/joshka/countw.tf">built</a>
       by <a href="http://joshka.net">Joshua McKinney</a>
     </footer>
     <script src="scripts/app-built.js"></script>
+    <!-- UserVoice JavaScript SDK (only needed once on a page) -->
+    <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/kniAFZreZqOELs6IAS26iQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
+
+    <!-- A tab to launch the Classic Widget -->
+    <script>
+    UserVoice = window.UserVoice || [];
+    UserVoice.push(['showTab', 'classic_widget', {
+      mode: 'full',
+      primary_color: '#cc0000',
+      link_color: '#007dbf',
+      default_mode: 'feedback',
+      forum_id: 199574,
+      tab_label: 'WTF',
+      tab_color: '#cc0000',
+      tab_position: 'middle-right',
+      tab_inverted: false
+    }]);
+    </script>
   </body>
 </html>
