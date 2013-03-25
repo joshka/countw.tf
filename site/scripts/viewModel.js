@@ -13,7 +13,7 @@ function ViewModel(wtfHistory) {
 	this.lastWtfText = ko.computed(function(argument) {
 		var lastWtf = this.lastWtf();
 		if (lastWtf)
-			return lastWtf.date.toString('ddd, MMM dd, yyyy h:mm:ss tt');
+			return formatDate(lastWtf.date);
 		return 'never';
 	}, this);
 
@@ -34,6 +34,10 @@ ViewModel.prototype.reset = function() {
 
 function fixDate(key, value){
 	return (key === 'date') ? new Date(value) : value;
+}
+
+function formatDate(date) {
+	return date.toString('ddd, MMM dd, yyyy h:mm:ss tt');
 }
 
 var storedHistory = localStorage.getItem('wtfHistory');
