@@ -1,5 +1,6 @@
 var ko = require('knockout-client'),
-	datejs = require('datejs');
+	datejs = require('datejs'),
+	_ = require('underscore');
 ko.mapping = require('knockout-mapping');
 
 function ViewModel(wtfHistory) {
@@ -10,7 +11,7 @@ function ViewModel(wtfHistory) {
 	}, this);
 	
 	this.lastWtf = ko.computed(function() {
-	 	return this.wtfHistory()[0];
+	 	return _.last(this.wtfHistory());
  	}, this);
 	
 	this.lastWtfText = ko.computed(function() {
@@ -20,10 +21,29 @@ function ViewModel(wtfHistory) {
 		return 'never';
 	}, this);
 
+	this.todaysWtfs = ko.computed(function() {
+		return this.wtfHistory().map(mapDate).filter(isToday);
+	}, this);
+
+	this.past24 = ko.computed(function() {
+		return this.wtfHistory().map(mapDate).filter(isPast24);
+	}, this);
+
 	this.todayWtfCount = ko.computed(function() {
-		return this.wtfHistory().filter(function(item) {
-			return item.date.between(Date.today(), Date.parse('tomorrow'));
-		}).length;
+		return this.todaysWtfs().length;
+	}, this);
+
+	this.hourlyWtfs = ko.computed(function() {
+		var grouped = _.groupBy(this.past24(), mapHour);
+		var hourly = [];
+		var i, m;
+		var offset = new Date().getHours();
+		for (i = 0; i < 24; i++) {
+			hour = (i + offset + 1) % 24;
+			hourly[i] = { hour: hour, wtfs: grouped['' + hour] || [] };
+		}
+		console.log(hourly);
+		return hourly;
 	}, this);
 
 	ko.computed(function() {
@@ -34,11 +54,27 @@ function ViewModel(wtfHistory) {
 
 ViewModel.prototype.wtf = function() {
 	date = new Date();
-	this.wtfHistory.unshift({ date: date });
+	this.wtfHistory.push({ date: date });
 }
 
 ViewModel.prototype.reset = function() {
 	this.wtfHistory.removeAll();
+}
+
+function mapHour(date) {
+	return date.getHours();
+}
+
+function mapDate(item) {
+	return item.date;
+}
+
+function isToday(date) {
+	return date.between(Date.today(), Date.parse('tomorrow'));
+}
+
+function isPast24(date) {
+	return date.compareTo(new Date().add(-1).days()) === 1;
 }
 
 function fixDate(key, value){

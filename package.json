@@ -6,7 +6,8 @@
     "express": "3.1.0",
     "datejs": "0.0.2",
     "knockout-client": "2.2.1",
-    "knockout-mapping": "2.3.2"
+    "knockout-mapping": "2.3.2",
+    "underscore": "1.4.4"
   },
   "engines": {
     "node": "0.10.0",

@@ -21,7 +21,16 @@
       <p class="wtf-date">
         Last WTF: <span data-bind="text: lastWtfText()"></span>
       </p>
-      WTFs today: <span data-bind="text: todayWtfCount()"></span>
+      <p>WTFs today: <span data-bind="text: todayWtfCount()"></span></p>
+      <p>Hourly:
+      <table align="center">
+      <tr data-bind="foreach: hourlyWtfs()">
+        <td data-bind="text: hour + 'h'" width="10em"></td>
+      </tr>
+      <tr data-bind="foreach: hourlyWtfs()">
+        <td data-bind="text: wtfs.length"></td>
+      </tr>
+      </table>
     </form>
     <footer>
       A toy app <a href="https://github.com/joshka/countw.tf">built</a>
