@@ -55,6 +55,8 @@ function ViewModel(wtfHistory) {
 		return hourly;
 	}, this);
 
+	this.hourlyVisible = ko.observable(false);
+
 	ko.computed(function() {
 		var history = JSON.stringify(this.wtfHistory());
 		localStorage.setItem('wtfHistory', history);
@@ -68,6 +70,10 @@ ViewModel.prototype.wtf = function() {
 
 ViewModel.prototype.reset = function() {
 	this.wtfHistory.removeAll();
+}
+
+ViewModel.prototype.toggleHourlyVisible = function() {
+	this.hourlyVisible(!this.hourlyVisible());
 }
 
 function mapHour(date) {
