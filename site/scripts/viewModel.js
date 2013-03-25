@@ -2,32 +2,42 @@ var ko = require('knockout-client'),
 	datejs = require('datejs');
 ko.mapping = require('knockout-mapping');
 
-function ViewModel(wtfs, lastWtf) {
-	this.wtfCount = ko.observable(wtfs);
-	this.lastWtf = ko.observable(lastWtf);
+function ViewModel(wtfHistory) {
+	this.wtfHistory = ko.observableArray(wtfHistory);
+	this.wtfCount = ko.computed(function() {
+		return this.wtfHistory().length;
+	}, this);
+	this.lastWtf = ko.computed(function() {
+	 	return this.wtfHistory()[0];
+ 	}, this);
 	this.lastWtfText = ko.computed(function(argument) {
-		return this.lastWtf() || 'never';
+		var lastWtf = this.lastWtf();
+		if (lastWtf)
+			return lastWtf.date.toString('ddd, MMM dd, yyyy h:mm:ss tt');
+		return 'never';
 	}, this);
 
 	ko.computed(function() {
-		localStorage.setItem('wtfs', this.wtfCount());
-		localStorage.setItem('lastWtf', this.lastWtf());
+		var history = JSON.stringify(this.wtfHistory());
+		localStorage.setItem('wtfHistory', history);
 	}, this).extend({throttle: 1});
 }
 
 ViewModel.prototype.wtf = function() {
-	this.wtfCount(this.wtfCount() + 1);
-	this.lastWtf(new Date().toString('ddd, MMM dd, yyyy h:mm:ss tt'));
+	date = new Date();
+	this.wtfHistory.unshift({ date: date });
 }
 
 ViewModel.prototype.reset = function() {
-	this.wtfCount(0);
+	this.wtfHistory.removeAll();
 }
 
-var storedVal = localStorage.getItem('wtfs');
-var wtfs = parseInt(storedVal) || 0;
-var lastWtf = localStorage.getItem('lastWtf');
+function fixDate(key, value){
+	return (key === 'date') ? new Date(value) : value;
+}
 
-var vm = new ViewModel(wtfs, lastWtf);
+var storedHistory = localStorage.getItem('wtfHistory');
+var wtfHistory = JSON.parse(storedHistory, fixDate) || [];
+var vm = new ViewModel(wtfHistory);
 
 module.exports = vm;
