@@ -25,6 +25,16 @@ function ViewModel(wtfHistory) {
 		return this.wtfHistory().map(mapDate).filter(isToday);
 	}, this);
 
+	this.todayWtfPerMin = ko.computed(function() {
+		var today = this.todaysWtfs();
+		var first = _.first(today);
+		var last = _.last(today);
+		var mins = (last - first) / 1000 / 60;
+		var count = today.length;
+		var wtfPerMin = count / mins;
+		return wtfPerMin.toFixed(3) || '0';
+	}, this);
+
 	this.past24 = ko.computed(function() {
 		return this.wtfHistory().map(mapDate).filter(isPast24);
 	}, this);
@@ -42,7 +52,6 @@ function ViewModel(wtfHistory) {
 			hour = (i + offset + 1) % 24;
 			hourly[i] = { hour: hour, wtfs: grouped['' + hour] || [] };
 		}
-		console.log(hourly);
 		return hourly;
 	}, this);
 

@@ -21,7 +21,10 @@
       <p class="wtf-date">
         Last WTF: <span data-bind="text: lastWtfText()"></span>
       </p>
-      <p>WTFs today: <span data-bind="text: todayWtfCount()"></span></p>
+      <p>
+        WTFs today: <span data-bind="text: todayWtfCount()"></span>
+        (<span data-bind="text: todayWtfPerMin()"></span>
+        <a href="http://www.osnews.com/story/19266/WTFs_m">WTFs/minute</a>)</p>
       <p>Hourly:
       <table align="center">
       <tr data-bind="foreach: hourlyWtfs()">
