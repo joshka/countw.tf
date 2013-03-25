@@ -31,8 +31,8 @@ function ViewModel(wtfHistory) {
 		var last = _.last(today);
 		var mins = (last - first) / 1000 / 60;
 		var count = today.length;
-		var wtfPerMin = count / mins;
-		return wtfPerMin.toFixed(3) || '0';
+		var wtfPerMin = count / mins || 0;
+		return wtfPerMin.toFixed(3);
 	}, this);
 
 	this.past24 = ko.computed(function() {
