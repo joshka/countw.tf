@@ -4,17 +4,26 @@ ko.mapping = require('knockout-mapping');
 
 function ViewModel(wtfHistory) {
 	this.wtfHistory = ko.observableArray(wtfHistory);
+	
 	this.wtfCount = ko.computed(function() {
 		return this.wtfHistory().length;
 	}, this);
+	
 	this.lastWtf = ko.computed(function() {
 	 	return this.wtfHistory()[0];
  	}, this);
-	this.lastWtfText = ko.computed(function(argument) {
+	
+	this.lastWtfText = ko.computed(function() {
 		var lastWtf = this.lastWtf();
 		if (lastWtf)
 			return formatDate(lastWtf.date);
 		return 'never';
+	}, this);
+
+	this.todayWtfCount = ko.computed(function() {
+		return this.wtfHistory().filter(function(item) {
+			return item.date.between(Date.today(), Date.parse('tomorrow'));
+		}).length;
 	}, this);
 
 	ko.computed(function() {
